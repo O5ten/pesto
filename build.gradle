@@ -1,0 +1,17 @@
+apply plugin: 'groovy'
+
+repositories {
+   	mavenCentral()
+}
+
+dependencies {
+    	compile 'com.sparkjava:spark-core:2.3'
+    	compile 'org.codehaus.groovy:groovy-all:2.4.6'
+
+    	testCompile 'junit:junit:4.12'
+}
+
+task run (dependsOn: 'classes', type: JavaExec){
+	main = 'Pesto'
+	classpath = sourceSets.main.runtimeClasspath
+}

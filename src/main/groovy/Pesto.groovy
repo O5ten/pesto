@@ -6,5 +6,4 @@ println "Configuring server..."
 port 8080
 staticFileLocation "public"
 
-get '/greeting', { req, res -> '{message}' }
-get '/page',  { req, res -> Page.createPage(req.queryMap().toMap()) }
+new Resources().start();
