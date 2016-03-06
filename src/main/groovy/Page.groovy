@@ -1,4 +1,4 @@
-@Grab import groovy.xml.MarkupBuilder as Builder
+import groovy.xml.MarkupBuilder as Builder
 
 static String createPage(Map queryParams) {
   def writer = new StringWriter()
