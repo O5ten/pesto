@@ -10,7 +10,15 @@ dependencies {
     	testCompile 'junit:junit:4.12'
 }
 
-task run (dependsOn: 'classes', type: JavaExec){
+task stage(dependsOn: 'classes', type: Copy) {
+    from 'src/main/web'
+    into 'build/public'
+    include '**/*.htm'
+    include '**/*.css'
+    include '**/*.js'
+}
+
+task serve(dependsOn: 'stage', type: JavaExec){
 	main = 'Pesto'
 	classpath = sourceSets.main.runtimeClasspath
 }
