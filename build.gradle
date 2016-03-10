@@ -7,15 +7,19 @@ repositories {
 dependencies {
     	compile 'com.sparkjava:spark-core:2.3'
     	compile 'org.codehaus.groovy:groovy-all:2.4.6'
+      compile 'com.google.code.gson:gson:2.6.2'
     	testCompile 'junit:junit:4.12'
 }
 
 task stage(dependsOn: 'classes', type: Copy) {
     from 'src/main/web'
     into 'build/public'
+    include '**/*.html'
     include '**/*.htm'
     include '**/*.css'
     include '**/*.js'
+    fileMode 0755
+    dirMode 0755
 }
 
 task serve(dependsOn: 'stage', type: JavaExec){

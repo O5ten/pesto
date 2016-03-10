@@ -1,7 +1,14 @@
 import static spark.Spark.*
 import static Utils.*;
-staticFileLocation '/build/public'
+import java.io.File;
+
+String cwd = System.getProperty('user.dir')
+String serverHome = cwd + File.separator + 'build' + File.separator + 'public';
+
+println 'Configuring server on port 8080'
 port 8080
-println "Configuring server on port 8080"
-println 'CWD: ' + System.getProperty('user.dir')
-Resources.start();
+
+println 'Serving static files from:' + serverHome;
+externalStaticFileLocation serverHome
+
+Resources.enable();

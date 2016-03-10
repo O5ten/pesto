@@ -1,0 +1,3 @@
+class SystemInfo{
+  Map properties; 
+}
