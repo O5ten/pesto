@@ -24,6 +24,6 @@ task stage(dependsOn: 'classes', type: Copy) {
 
 task serve(dependsOn: 'stage', type: JavaExec){
 	main = 'Pesto'
-  systemProperties ['serverHome':'src\\main\\web']
+  systemProperties(['serverHome':'src\\main\\web'])
 	classpath = sourceSets.main.runtimeClasspath
 }
