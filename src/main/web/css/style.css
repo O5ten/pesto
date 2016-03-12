@@ -1,35 +1,6 @@
 body {
-  background: black;
-  margin: 10px;
-}
-
-.header {
-  background: linear-gradient(#AEFFEA, #AEFFEA);
-  text-align: left;
-}
-
-.header h1{
-  font-size: 50px;
+  background: transparent;
   margin: 0px;
-}
-
-.header .title{
-  text-align: center;
-}
-
-.header button{
-  margin: 5px;
-  height: 30px;
-  width: 100px;
-}
-
-.header .navigation{
-  background: #334433;
-}
-
-.header .line{
-  height: 2px;
-  background: #99ddaa;
 }
 
 .content {

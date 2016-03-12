@@ -13,17 +13,20 @@
   <body>
     <div class="main">
       <div class="header">
-        <div class="title">
-          <H1>{{'FAB'}}</H1>
+        <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Pesto</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Hem</a></li>
+            <li><a href="#">Kalender</a></li>
+            <li><a href="#">Planering</a></li>
+            <li><a href="#">Framsteg</a></li>
+            <li><a href="#">Arkiv</a></li>
+          </ul>
         </div>
-        <div class="line"></div>
-        <div class="navigation">
-          <button id="home">Hem</button>
-          <button id="planning">Planering</button>
-          <button id="calendar">Kalender</button>
-          <button id="unhandled">Ohanterat</button>
-        </div>
-        <div class="line"></div>
+      </nav>
       </div>
       <div class="content">
         <canvas></canvas>
