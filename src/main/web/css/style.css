@@ -1,13 +1,31 @@
 body {
-  background: #AEFFEA;
-  margin: 0px;
+    background  : #DDDDDD;
+    margin      : 0px;
 }
 
-.jumbotron {
-  text-align: center;
-  background: #AA90AA;
+.page {
+    padding     : 8px;
 }
 
-.content {
-  text-align: center;
+.paste {
+    padding     : 8px;
+    border-color: black;
+}
+
+.paste-content {
+    text-align  : left;
+    padding     : 8px;
+    border-radius: 25px;
+}
+
+.paste-language {
+    float: right;
+    margin: 10px 10px;
+}
+
+.microlight {
+    font-family     : monospace;
+    white-space     : pre;
+    background-color: #FFFFDD;
+    color           : #052C36;
 }

@@ -1,5 +1,7 @@
 .gradle/
 .git/
 .gradle/
+.idea/
+src/main/web/node_modules/
 build/
 target/

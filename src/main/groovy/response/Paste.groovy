@@ -1,11 +1,14 @@
 package response
 
-class Hello{
-    String message;
+class Paste {
+    String id
+    String code
+    String language
+    String paste
 
     Map asMap(){
         this.class.declaredFields.findAll { !it.synthetic }.collectEntries {
-            [ (it.name):this."$it.name" ]
+            [(it.name):this."$it.name" ]
         }
     }
 }

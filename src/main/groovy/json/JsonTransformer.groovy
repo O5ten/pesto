@@ -1,7 +1,9 @@
+package json;
+
 import com.google.gson.Gson;
 import spark.ResponseTransformer;
 
-public class JsonTransformer implements ResponseTransformer {
+class JsonTransformer implements ResponseTransformer {
 
     private Gson gson = new Gson();
 

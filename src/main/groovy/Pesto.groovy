@@ -1,13 +1,16 @@
+import routes.PersistenceRoute
+import routes.SystemRoute
+
 import static spark.Spark.*
-import static Utils.*;
-import java.io.File;
 
 String serverHome = System.getProperty('user.dir') + File.separator + System.getProperty('serverHome');
+int serverPort = System.getProperty('serverPort') as Integer;
 
-println 'Configuring server on port 8080'
-port 8080
+println "Configuring server on port $serverPort"
+port serverPort
 
-println 'Serving static files from:' + serverHome;
+println "Serving static files from $serverHome at http://localhost:$serverPort"
 externalStaticFileLocation serverHome
 
-Resources.enable();
+def persistenceRoute = new PersistenceRoute().enable()
+def systemRoute = new SystemRoute().enable()

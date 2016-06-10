@@ -1,7 +1,8 @@
-package response;
+package response
 
-class SystemInfo {
-    Map properties;
+class Id {
+    String id
+
     Map asMap(){
         this.class.declaredFields.findAll { !it.synthetic }.collectEntries {
             [ (it.name):this."$it.name" ]
