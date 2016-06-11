@@ -21,8 +21,8 @@ class PersistenceRoute {
 
     void enableCrud(){
         get '/paste', this.&readAll, new JsonTransformer()
-        post '/paste', this.&create, new JsonTransformer()
         get '/paste/:id', this.&read, new JsonTransformer()
+        post '/paste', this.&create, new JsonTransformer()
         put '/paste/:id', this.&update
         delete '/paste/:id', this.&delete
     }

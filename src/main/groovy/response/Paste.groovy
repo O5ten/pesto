@@ -2,6 +2,7 @@ package response
 
 class Paste {
     String id
+    String title
     String code
     String language
     String paste

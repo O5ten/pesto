@@ -9,17 +9,17 @@ import static spark.Spark.get
 class SystemRoute {
 
     void greeting(){
-        get('/greeting', { req, res ->
+        get '/greeting', { req, res ->
             res.type('application/json')
             new Hello(message: 'You, i like you, hello')
-        }, new JsonTransformer())
+        }, new JsonTransformer()
     }
 
     void systemInfo() {
-        get('/system/info', { req, res ->
+        get '/system/info', { req, res ->
             res.type('application/json')
             new SystemInfo(properties: System.getProperties())
-        }, new JsonTransformer())
+        }, new JsonTransformer()
     }
 
     SystemRoute enable(){
