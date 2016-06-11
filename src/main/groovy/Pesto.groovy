@@ -1,5 +1,4 @@
 import routes.PersistenceRoute
-import routes.SystemRoute
 
 import static spark.Spark.*
 
@@ -13,4 +12,3 @@ println "Serving static files from $serverHome at http://localhost:$serverPort"
 externalStaticFileLocation serverHome
 
 def persistenceRoute = new PersistenceRoute().enable()
-def systemRoute = new SystemRoute().enable()

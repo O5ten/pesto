@@ -43,7 +43,7 @@ class PersistenceRoute {
 
     }
 
-    ArrayList<Paste> readAll(Request req, Response res){
+    ArrayList<Paste> readAll(Request _, Response res){
         res.status 200
         res.type "application/json"
         return db.fetchAllPastes()
