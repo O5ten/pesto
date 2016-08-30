@@ -8,6 +8,8 @@ import response.Paste
 import spark.Request
 import spark.Response
 
+import javax.xml.ws.http.HTTPException
+
 import static spark.Spark.*;
 
 class PersistenceRoute {
@@ -20,11 +22,11 @@ class PersistenceRoute {
     }
 
     void enableCrud(){
-        get '/paste', this.&readAll, new JsonTransformer()
-        get '/paste/:id', this.&read, new JsonTransformer()
-        post '/paste', this.&create, new JsonTransformer()
-        put '/paste/:id', this.&update
-        delete '/paste/:id', this.&delete
+        get '/api/paste', this.&readAll, new JsonTransformer()
+        get '/api/paste/:id', this.&read, new JsonTransformer()
+        post '/api/paste', this.&create, new JsonTransformer()
+        put '/api/paste/:id', this.&update
+        delete '/api/paste/:id', this.&delete
     }
 
     Id create(Request req, Response res){
@@ -36,11 +38,15 @@ class PersistenceRoute {
     }
 
     Paste read(Request req, Response res){
-        db.fetchPasteById req.params(':id')
+        def id = req.params(':id')
+        def paste = db.fetchPasteById(req.params(':id'))
         res.status 200
-        res.type "application/json"
-        return PasteResponse()
-
+        res.type paste ? "application/json" : 'text/html'
+        if(paste){
+            return paste
+        } else {
+            halt 404, "404 Paste with id $id not found"
+        }
     }
 
     ArrayList<Paste> readAll(Request _, Response res){

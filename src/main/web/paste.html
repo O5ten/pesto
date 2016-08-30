@@ -1,0 +1,9 @@
+<div class="page">
+    <div ng-repeat="paste in pastes">
+        <H3><a href="#/paste/{{paste.id}}">{{paste.title}}</a></H3>
+        <div class="paste">
+            <i class="paste-language">{{paste.language}}</i>
+            <div class="paste-content microlight">{{paste.code}}</div>
+        </div>
+    </div>
+</div>

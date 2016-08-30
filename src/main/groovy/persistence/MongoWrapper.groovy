@@ -28,13 +28,16 @@ class MongoWrapper {
     }
 
     Paste fetchPasteById(String id){
-        return this.pesto.pastes.find(id: id) as Paste
+        def v = this.pesto.pastes.find(id: id).find()
+        if(v){
+            new Paste(id: v.id, language: v.language, code: v.code, title: v.title)
+        }
     }
 
     ArrayList<Paste> fetchAllPastes(){
-        return this.pesto.pastes.find().collect({ v ->
+        this.pesto.pastes.find().collect({ v ->
             new Paste(id: v.id, language: v.language, code: v.code, title: v.title);
-        });
+        })
     }
 
     String persistPaste(Paste paste){

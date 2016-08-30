@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en" ng-app="pesto">
   <head>
     <meta charset="UTF-8">
@@ -11,19 +10,13 @@
     <script src="/lib/bootstrap/bootstrap.min.js"></script>
     <script src="/lib/microlight/microlight.min.js"></script>
     <script src="/lib/angular/angular.min.js"></script>
-    <script src="/app/pesto.js"></script>
+    <script src="/lib/angular/angular-route.min.js"></script>
+    <script src="/pesto.js"></script>
   </head>
-  <body ng-controller="pestoController">
-        <div class="page">
-            <ul>
-                <li ng-repeat="paste in pastes">
-                    <H3>{{paste.title}}</H3>
-                    <div class="paste">
-                        <i class="paste-language">{{paste.language}}</i>
-                        <div class="paste-content microlight">{{paste.code}}</div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </body>
+  <body ng-controller="MainController">
+      <a href="#/paste">All</a> |
+      <a ng-repeat="paste in pastes" href="#/paste/{{paste.id}}"> {{paste.id}} </a> |
+      <a href="#/paste">Latest</a>
+      <div ng-view></div>
+  </body>
 </html>
