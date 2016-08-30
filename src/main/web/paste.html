@@ -1,9 +1,23 @@
 <div class="page">
     <div ng-repeat="paste in pastes">
-        <H3><a href="#/paste/{{paste.id}}">{{paste.title}}</a></H3>
+        <H3><a href="#/paste/{{paste.id}}" ng-model="paste.title">{{paste.title}}</a></H3>
         <div class="paste">
-            <i class="paste-language">{{paste.language}}</i>
-            <div class="paste-content microlight">{{paste.code}}</div>
+            <i class="paste-language" ng-model="paste.language">{{paste.language}}</i>
+            <div class="paste-content microlight"><p ng-model="paste.code">{{paste.code}}</p></div>
+        </div>
+        <hr/>
+        <div>
+            <form ng-submit="">
+                <p>Title</p>
+                <textarea rows="1" ng-model="paste.title"></textarea>
+                <p>Language</p>
+                <textarea rows="1" ng-model="paste.language"></textarea>
+                <p>Code</p>
+                <textarea rows="6" cols="50" ng-change="resetMicrolight()" ng-model="paste.code"></textarea>
+                <p>
+                    <input type="submit" value="Save"/>
+                </p>
+            </form>
         </div>
     </div>
 </div>

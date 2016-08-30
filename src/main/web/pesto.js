@@ -38,11 +38,22 @@ angular.module('pesto', ['ngRoute'])
             microlight.reset();
         });
     });
+
     $http({
         method: 'GET',
         url: '/api/paste/' + $routeParams.id
     }).then(function(response) {
         $scope.pastes = [response.data];
+        $scope.$watch('pastes', function(){
+            $scope.$evalAsync(function() {
+                microlight.reset();
+            });
+        });
+        $scope.resetMicrolight = function(){
+            $scope.$evalAsync(function() {
+                microlight.reset();
+            });
+        };
     }, function(response) {
         $scope.singlePaste = {
             id: '404',
@@ -59,7 +70,7 @@ angular.module('pesto', ['ngRoute'])
         controller: 'PasteController'
     })
     .when('/paste', {
-        templateUrl: 'paste.html',
+        templateUrl: 'pastes.html',
         controller: 'AllController'
     }).otherwise({
         redirectTo: '/paste'
