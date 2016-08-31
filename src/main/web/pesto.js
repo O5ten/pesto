@@ -50,9 +50,13 @@ angular.module('pesto', ['ngRoute'])
             });
         });
         $scope.resetMicrolight = function(){
+            $('.paste-content').text($scope.pastes[0].code);
             $scope.$evalAsync(function() {
                 microlight.reset();
             });
+        };
+        $scope.onSubmit = function(){
+
         };
     }, function(response) {
         $scope.singlePaste = {
