@@ -6,7 +6,7 @@ import com.mongodb.DB
 import com.mongodb.MongoCredential
 import com.mongodb.ServerAddress
 import response.Paste
-
+import response.Id
 
 class MongoWrapper {
     def MongoCredential credentials
@@ -30,7 +30,7 @@ class MongoWrapper {
     Paste fetchPasteById(String id){
         def v = this.pesto.pastes.find(id: id).find()
         if(v){
-            new Paste(id: v.id, language: v.language, code: v.code, title: v.title)
+            new Paste(id: v.id, language: v.language, code: v.code, title: v.title, author: (v.author ?: 'Anonymous'))
         }
     }
 
@@ -40,17 +40,20 @@ class MongoWrapper {
         })
     }
 
-    String persistPaste(Paste paste){
+    Id persistPaste(Paste paste){
         paste.id = paste.id ?: UUID.randomUUID()
+        println "persisting object:" + paste.asMap()
         this.pesto.pastes.insert(paste.asMap());
-        return id;
+        return new Id(id: paste.id);
     }
 
-    String updatePasteById(String id){
-        return this.pesto.pastes.find(id: id)
+    String updatePasteById(String id, Paste paste){
+        println "updating object:" + paste.asMap()
+        return this.pesto.pastes.update([id: id], paste.asMap())
     }
 
     String deletePasteById(String id){
+        println "removing object with id $id"
         this.pesto.pastes.remove(id: id)
     }
 }

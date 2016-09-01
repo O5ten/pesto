@@ -14,9 +14,10 @@
     <script src="/pesto.js"></script>
   </head>
   <body ng-controller="MainController">
-      <a href="#/paste">All</a> |
-      <a ng-repeat="paste in pastes" href="#/paste/{{paste.id}}"> {{paste.id}} </a> |
-      <a href="#/paste">Latest</a>
+      <div>
+          <H1 class="header">PESTO</H1>
+      </div>
+      <HR/>
       <div ng-view></div>
   </body>
 </html>

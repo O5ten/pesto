@@ -2,6 +2,7 @@ package routes
 
 import com.google.gson.Gson
 import json.JsonTransformer
+import json.EmptyTransformer
 import persistence.MongoWrapper
 import response.Id
 import response.Paste
@@ -25,16 +26,17 @@ class PersistenceRoute {
         get '/api/paste', this.&readAll, new JsonTransformer()
         get '/api/paste/:id', this.&read, new JsonTransformer()
         post '/api/paste', this.&create, new JsonTransformer()
-        put '/api/paste/:id', this.&update
-        delete '/api/paste/:id', this.&delete
+        put '/api/paste/:id', this.&update, new EmptyTransformer()
+        delete '/api/paste/:id', this.&delete, new EmptyTransformer()
     }
 
     Id create(Request req, Response res){
         Paste paste = gson.fromJson(req.body(), Paste.class)
-        def id = this.db.persistPaste(paste);
+        println paste.asMap()
+        Id id = this.db.persistPaste(paste)
         res.status 201
         res.type "application/json"
-        return new Id(id: id);
+        return id;
     }
 
     Paste read(Request req, Response res){
@@ -55,13 +57,14 @@ class PersistenceRoute {
         return db.fetchAllPastes()
     }
 
-    void update(Request req, Response res){
-        db.updatePasteById req.params(':id')
+    Id update(Request req, Response res){
+        Paste paste = gson.fromJson(req.body(), Paste.class)
+        db.updatePasteById req.params(':id'), paste
         res.status 200
         res.type "application/json"
     }
 
-    void delete(Request req, Response res){
+    Id delete(Request req, Response res){
         db.deletePasteById req.params(':id')
         res.status 204
         res.type "application/json"

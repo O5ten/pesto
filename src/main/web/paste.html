@@ -4,6 +4,7 @@
         <div class="paste">
             <i class="paste-language">{{paste.language}}</i>
             <div class="paste-content microlight">{{paste.code}}</div>
+            <i class="paste-author">{{paste.author}}</i>
         </div>
         <hr/>
         <div>
@@ -12,6 +13,8 @@
                 <textarea rows="1" ng-model="paste.title"></textarea>
                 <p>Language</p>
                 <textarea rows="1" ng-model="paste.language"></textarea>
+                <p>Author</p>
+                <textarea rows="1" ng-model="paste.author"></textarea>
                 <p>Code</p>
                 <textarea rows="6" cols="50" ng-change="resetMicrolight()" ng-model="paste.code" class="paste-edit microlight"></textarea>
                 <p>

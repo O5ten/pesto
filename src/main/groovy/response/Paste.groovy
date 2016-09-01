@@ -5,7 +5,7 @@ class Paste {
     String title
     String code
     String language
-    String paste
+    String author
 
     Map asMap(){
         this.class.declaredFields.findAll { !it.synthetic }.collectEntries {

@@ -12,6 +12,10 @@ body {
     border-color: black;
 }
 
+.navigation {
+    text-align: center;
+}
+
 .paste-content {
     text-align  : left;
     min-height  : 40px;
