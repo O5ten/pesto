@@ -34,34 +34,34 @@ class MongoWrapper {
         }
     }
 
-    ArrayList<Paste> fetchAllPastes(){
-        return this.pesto.pastes.find().collect({ v ->
+    ArrayList<Paste> fetchAllPastes(int count = 10, int after = 0){
+        return this.pesto.pastes.find().limit(count).skip(after).collect({ v ->
             new Paste(id: v.id, language: v.language, code: v.code, title: v.title);
         })
     }
 
-    ArrayList<Paste> fetchAllPastesByFilter(field, value){
+    ArrayList<Paste> fetchAllPastesByFilter(field, value, int count = 10, int after = 0){
         def criteria = [:]
         criteria.put(field, value)
-        return this.pesto.pastes.find(criteria).collect({ v ->
+        this.pesto.pastes.find(criteria).limit(count).skip(after).collect({ v ->
             new Paste(id: v.id, language: v.language, code: v.code, title: v.title);
         })
     }
 
     Id persistPaste(Paste paste){
         paste.id = paste.id ?: UUID.randomUUID()
-        println "persisting object:" + paste.asMap()
+        println "POST: persisting object " + paste.asMap()
         this.pesto.pastes.insert(paste.asMap());
         return new Id(id: paste.id);
     }
 
     String updatePasteById(String id, Paste paste){
-        println "updating object:" + paste.asMap()
+        println "PUT: updating object:" + paste.asMap()
         return this.pesto.pastes.update([id: id], paste.asMap())
     }
 
     String deletePasteById(String id){
-        println "removing object with id $id"
-        this.pesto.pastes.remove(id: id)
+        println "DELETE: removing object with id $id"
+        return this.pesto.pastes.remove(id: id)
     }
 }

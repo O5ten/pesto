@@ -7,6 +7,7 @@ import json.EmptyTransformer
 import persistence.MongoWrapper
 import response.Id
 import response.Paste
+import spark.QueryParamsMap
 import spark.Request
 import spark.Response
 
@@ -25,7 +26,6 @@ class PersistenceRoute {
 
     void enableCrud(){
         get '/api/paste', this.&readAll, new JsonTransformer()
-        get '/api/paste/paginated/by/:entriesPerPage', this.&readAll, new JsonTransformer()
         get '/api/paste/by/:field/as/:value', this.&readByFilter, new JsonTransformer()
         get '/api/paste/:id/:field', this.&readField, new TextTransformer()
         get '/api/paste/:id', this.&read, new JsonTransformer()
@@ -71,17 +71,22 @@ class PersistenceRoute {
     ArrayList<Paste> readByFilter(Request req, Response res){
         def field = req.params(':field')
         def value = req.params(':value')
-        ArrayList<Paste> pastes = db.fetchAllPastesByFilter(field, value)
+        def count = req.queryParams('limit') ?: 10
+        def after = req.queryParams('after') ?: 0
+        ArrayList<Paste> pastes = db.fetchAllPastesByFilter(field, value, count as int, after as int)
         res.status 200
         res.type 'application/json'
-        println "GET Filtered pastes by key $field with $value " + pastes;
+        println "GET: Filtered pastes by key $field with $value"
         return pastes
     }
 
-    ArrayList<Paste> readAll(Request _, Response res){
+    ArrayList<Paste> readAll(Request req, Response res){
+        def count = req.queryParams('limit') ?: 10
+        def after = req.queryParams('after') ?: 0
         res.status 200
         res.type "application/json"
-        return db.fetchAllPastes()
+        println "GET: Fetched all available pastes"
+        return db.fetchAllPastes(count as int, after as int)
     }
 
     Id update(Request req, Response res){

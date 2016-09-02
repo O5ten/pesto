@@ -1,5 +1,5 @@
-angular.module('Pesto.Home', ['ngRoute'])
-.controller('Home', function pestoController($scope, $http, $route, $routeParams, $location) {
+angular.module('Pesto.Category', ['ngRoute'])
+.controller('Category', function pestoController($scope, $http, $route, $routeParams, $location) {
     $scope.pastes = [];
     $scope.$watch('pastes', function(){
         $scope.$evalAsync(function() {
@@ -26,12 +26,9 @@ angular.module('Pesto.Home', ['ngRoute'])
     $scope.onCopy = function(code){
         console.log('Copied ' + code + 'to clipboard');
     };
-    $scope.onCategory = function(category) {
-        $location.url('/Home/' + category);
-    }
     $http({
         method: 'GET',
-        url: '/api/paste'
+        url: '/api/paste/by/language/as/' + $routeParams.category
     }).then(function(response) {
         $scope.pastes = response.data;
     }, function(response) {
@@ -39,8 +36,8 @@ angular.module('Pesto.Home', ['ngRoute'])
     });
 }).config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $routeProvider
-  .when('/Home', {
+  .when('/Home/:category', {
       templateUrl: 'pages/home.html',
-      controller: 'Home'
+      controller: 'Category'
   });
 }]);

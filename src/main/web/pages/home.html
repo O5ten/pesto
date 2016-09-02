@@ -4,7 +4,7 @@
         <div class="paste">
             <i class="paste-top-right-links glyphicon glyphicon-trash" ng-click="onRemove(paste.id)"></i>
             <i class="paste-top-right-links glyphicon glyphicon-copy" ng-click="onCopy(paste.code)"></i>
-            <i class="paste-top-right-links" ng-model="paste.language">{{paste.language}}</i>
+            <i class="paste-top-right-links" ng-click="onCategory(paste.language)" ng-model="paste.language">{{paste.language}}</i>
             <div class="paste-content microlight"><p ng-model="paste.code">{{paste.code}}</p></div>
             <i class="paste-author">{{paste.author}}</i>
         </div>
