@@ -1,10 +1,16 @@
 body {
-    background  : #DDDDDD;
+    background  : #012849;
     margin      : 0px;
+    padding     : 0px;
 }
 
 .page {
-    padding     : 8px;
+    padding     : 0px 8px 8px 8px;
+}
+
+hr{
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .paste {
@@ -12,8 +18,62 @@ body {
     border-color: black;
 }
 
-.navigation {
-    text-align: center;
+.page-title {
+    padding: 10px 10px 10px 10px;
+    font-size: 22px;
+    color: #FFFFFF;
+    cursor: pointer;
+    background: #023859; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#023859, #094566); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#023859, #094566); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#023859, #094566); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#023859, #094566);
+}
+
+textarea {
+    color: #000000;
+}
+
+input {
+    color: #000000;
+}
+
+.page-content {
+    color: #DEFEFE;
+}
+
+.header {
+    font-size: 22px;
+}
+
+.header:hover {
+    -webkit-filter: brightness(200%);
+}
+
+.header:active {
+    -webkit-filter: brightness(300%);
+}
+
+
+.home-create-new-paste {
+    background-color: #DEFEFE;
+    color: #000000;
+    padding: 4px;
+    float: right;
+    margin: 8px;
+    font-size: 18px;
+    border-radius: 24px;
+    cursor: pointer;
+}
+
+.home-create-new-paste:hover {
+    -ms-transform: scale(1.1, 1.1); /* IE 9 */
+    -webkit-transform: scale(1.1, 1.1); /* Safari */
+    -transform: scale(1.1, 1.1);
+}
+
+.home-create-new-paste:active {
+    -webkit-filter: brightness(80%);
 }
 
 .paste-content {
@@ -23,14 +83,26 @@ body {
     border-radius: 25px;
 }
 
-.paste-language {
+.paste-top-right-links {
+    color: #000000;
     float: right;
-    margin: 10px 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.paste-top-right-links:hover {
+    -ms-transform: scale(1.5, 1.5); /* IE 9 */
+    -webkit-transform: scale(1.5, 1.5); /* Safari */
+    -transform: scale(1.5, 1.5);
+}
+
+.paste-top-right-links:active {
+    -webkit-filter: brightness(200%);
 }
 
 .microlight {
     font-family     : monospace;
     white-space     : pre;
-    background-color: #FFFFDD;
+    background-color: #DEFEFE;
     color           : #052C36;
 }

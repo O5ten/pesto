@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="pesto">
+<html lang="en" ng-app="Pesto">
   <head>
     <meta charset="UTF-8">
     <title>Pesto</title>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"></link>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-theme.min.css"></link>
     <link rel="stylesheet" type="text/css" href="/css/style.css"></link>
-    <script src="/lib/jquery/jquery-2.2.4.min.js"></script>
-    <script src="/lib/bootstrap/bootstrap.min.js"></script>
-    <script src="/lib/microlight/microlight.min.js"></script>
-    <script src="/lib/angular/angular.min.js"></script>
-    <script src="/lib/angular/angular-route.min.js"></script>
-    <script src="/pesto.js"></script>
   </head>
-  <body ng-controller="MainController">
-      <div>
-          <H1 class="header">PESTO</H1>
+  <body ng-controller="Home">
+      <div ng-click="createNew()" class="home-create-new-paste">Create new paste</div>
+      <div class="page-title" ng-click="goHome()">
+          PESTO
       </div>
-      <HR/>
-      <div ng-view></div>
+      <hr/>
+      <div class="page-content" ng-view></div>
+      <script src="/lib/jquery/jquery-2.2.4.min.js"></script>
+      <script src="/lib/bootstrap/bootstrap.min.js"></script>
+      <script src="/lib/microlight/microlight.min.js"></script>
+      <script src="/lib/angular/angular.min.js"></script>
+      <script src="/lib/angular/angular-route.min.js"></script>
+      <script src="/controllers/Home.js"></script>
+      <script src="/controllers/New.js"></script>
+      <script src="/controllers/Paste.js"></script>
+      <script src="/Pesto.js"></script>
   </body>
 </html>

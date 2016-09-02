@@ -1,0 +1,12 @@
+<div class="page">
+    <div ng-repeat="paste in pastes">
+        <div class="header" ng-click="editPaste(paste.id)" ng-model="paste.title">{{paste.title}}</div>
+        <div class="paste">
+            <i class="paste-top-right-links glyphicon glyphicon-trash" ng-click="onRemove(paste.id)"></i>
+            <i class="paste-top-right-links glyphicon glyphicon-copy" ng-click="onCopy(paste.code)"></i>
+            <i class="paste-top-right-links" ng-model="paste.language">{{paste.language}}</i>
+            <div class="paste-content microlight"><p ng-model="paste.code">{{paste.code}}</p></div>
+            <i class="paste-author">{{paste.author}}</i>
+        </div>
+    </div>
+</div>
