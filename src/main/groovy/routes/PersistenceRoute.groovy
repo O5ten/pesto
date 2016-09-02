@@ -2,6 +2,7 @@ package routes
 
 import com.google.gson.Gson
 import json.JsonTransformer
+import json.TextTransformer
 import json.EmptyTransformer
 import persistence.MongoWrapper
 import response.Id
@@ -24,6 +25,7 @@ class PersistenceRoute {
 
     void enableCrud(){
         get '/api/paste', this.&readAll, new JsonTransformer()
+        get '/api/paste/:id/code', this.&readText, new TextTransformer()
         get '/api/paste/:id', this.&read, new JsonTransformer()
         post '/api/paste', this.&create, new JsonTransformer()
         put '/api/paste/:id', this.&update, new EmptyTransformer()
@@ -46,6 +48,18 @@ class PersistenceRoute {
         res.type paste ? "application/json" : 'text/html'
         if(paste){
             return paste
+        } else {
+            halt 404, "404 Paste with id $id not found"
+        }
+    }
+
+    Paste readText(Request req, Response res){
+        def id = req.params(':id')
+        def paste = db.fetchPasteById(req.params(':id'))
+        res.status 200
+        res.type 'text/text'
+        if(paste){
+            return paste.code
         } else {
             halt 404, "404 Paste with id $id not found"
         }
