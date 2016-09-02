@@ -1,6 +1,13 @@
 <div class="page">
     <div ng-repeat="paste in pastes">
         <H3 ng-model="paste.title">{{paste.title}}</i></H3>
+        <div class="view-column">
+            <div class="paste">
+                <i class="paste-top-right-links">{{paste.language}}</i>
+                <div class="paste-content microlight">{{paste.code}}</div>
+                <i class="paste-author">{{paste.author}}</i>
+            </div>
+        </div>
         <div class="edit-column">
             <form ng-submit="onSubmit()">
                 <p>Title</p>
@@ -15,13 +22,6 @@
                     <input type="submit" value="Save"/>
                 </p>
             </form>
-        </div>
-        <div class="view-column">
-            <div class="paste">
-                <i class="paste-top-right-links">{{paste.language}}</i>
-                <div class="paste-content microlight">{{paste.code}}</div>
-                <i class="paste-author">{{paste.author}}</i>
-            </div>
         </div>
     </div>
 </div>

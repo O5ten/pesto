@@ -8,11 +8,13 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css"></link>
   </head>
   <body ng-controller="Home">
-      <div ng-click="createNew()" class="home-create-new-paste">Create new paste</div>
-      <div class="page-title" ng-click="goHome()">
-          PESTO
+      <div class="floating-header">
+          <div ng-click="createNew()" class="home-create-new-paste">Create new paste</div>
+          <div class="page-title" ng-click="goHome()">
+              PESTO
+          </div>
+          <hr/>
       </div>
-      <hr/>
       <div class="page-content" ng-view></div>
       <script src="/lib/jquery/jquery-2.2.4.min.js"></script>
       <script src="/lib/bootstrap/bootstrap.min.js"></script>

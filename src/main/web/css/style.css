@@ -5,7 +5,7 @@ body {
 }
 
 .page {
-    padding     : 0px 8px 8px 8px;
+    padding     : 60px 8px;
 }
 
 hr{
@@ -16,6 +16,13 @@ hr{
 .paste {
     padding     : 8px;
     border-color: black;
+}
+
+.floating-header {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 1;
 }
 
 .page-title {
@@ -44,6 +51,7 @@ input {
 
 .header {
     font-size: 22px;
+    cursor: pointer;
 }
 
 .header:hover {
