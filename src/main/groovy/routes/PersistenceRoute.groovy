@@ -25,7 +25,9 @@ class PersistenceRoute {
 
     void enableCrud(){
         get '/api/paste', this.&readAll, new JsonTransformer()
-        get '/api/paste/:id/code', this.&readText, new TextTransformer()
+        get '/api/paste/paginated/by/:entriesPerPage', this.&readAll, new JsonTransformer()
+        get '/api/paste/by/:field/as/:value', this.&readByFilter, new JsonTransformer()
+        get '/api/paste/:id/:field', this.&readField, new TextTransformer()
         get '/api/paste/:id', this.&read, new JsonTransformer()
         post '/api/paste', this.&create, new JsonTransformer()
         put '/api/paste/:id', this.&update, new EmptyTransformer()
@@ -53,16 +55,27 @@ class PersistenceRoute {
         }
     }
 
-    Paste readText(Request req, Response res){
+    String readField(Request req, Response res){
+        def field = req.params(':field')
         def id = req.params(':id')
-        def paste = db.fetchPasteById(req.params(':id'))
+        def paste = db.fetchPasteById(id)
         res.status 200
         res.type 'text/text'
-        if(paste){
-            return paste.code
+        if(paste && paste.hasProperty('field')){
+            return paste[field]
         } else {
-            halt 404, "404 Paste with id $id not found"
+            halt 404, "404 Paste with id $id and field $field not found"
         }
+    }
+
+    ArrayList<Paste> readByFilter(Request req, Response res){
+        def field = req.params(':field')
+        def value = req.params(':value')
+        ArrayList<Paste> pastes = db.fetchAllPastesByFilter(field, value)
+        res.status 200
+        res.type 'application/json'
+        println "GET Filtered pastes by key $field with $value " + pastes;
+        return pastes
     }
 
     ArrayList<Paste> readAll(Request _, Response res){

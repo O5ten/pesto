@@ -12,12 +12,10 @@ gradle serve
 - Syntax highlighting
 - Persistence Support, CRUD exists everywhere but UI
 - List pastes
-
-## Roadmap
 - Modify pastes
 - Remove pastes
 - Update pastes
-- Label pastes
+- Categorize pastes
 
 ## Requires
 An accessable MongoDB instance with usr/pw mongodb/mongodb

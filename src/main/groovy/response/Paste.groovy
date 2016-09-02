@@ -6,6 +6,8 @@ class Paste {
     String code
     String language
     String author
+    String published 
+    String modified
 
     Map asMap(){
         this.class.declaredFields.findAll { !it.synthetic }.collectEntries {

@@ -35,7 +35,15 @@ class MongoWrapper {
     }
 
     ArrayList<Paste> fetchAllPastes(){
-        this.pesto.pastes.find().collect({ v ->
+        return this.pesto.pastes.find().collect({ v ->
+            new Paste(id: v.id, language: v.language, code: v.code, title: v.title);
+        })
+    }
+
+    ArrayList<Paste> fetchAllPastesByFilter(field, value){
+        def criteria = [:]
+        criteria.put(field, value)
+        return this.pesto.pastes.find(criteria).collect({ v ->
             new Paste(id: v.id, language: v.language, code: v.code, title: v.title);
         })
     }
