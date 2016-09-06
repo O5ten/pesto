@@ -6,5 +6,5 @@ angular.module('Pesto', [ 'ngRoute',
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $routeProvider
-  .otherwise({redirectTo: '/Home'});
+  .otherwise({redirectTo: '/home'});
 }]);

@@ -39,7 +39,7 @@ angular.module('Pesto.Home', ['ngRoute'])
     });
 }).config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $routeProvider
-  .when('/Home', {
+  .when('/home', {
       templateUrl: 'pages/home.html',
       controller: 'Home'
   });

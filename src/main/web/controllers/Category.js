@@ -15,7 +15,7 @@ angular.module('Pesto.Category', ['ngRoute'])
         });
     };
     $scope.goHome = function(){
-        $location.url('/Home');
+        $location.url('/home');
     };
     $scope.editPaste = function(id){
         $location.url('/paste/' + id);
@@ -36,7 +36,7 @@ angular.module('Pesto.Category', ['ngRoute'])
     });
 }).config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $routeProvider
-  .when('/Home/:category', {
+  .when('/home/:category', {
       templateUrl: 'pages/home.html',
       controller: 'Category'
   });
