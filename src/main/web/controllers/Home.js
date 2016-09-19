@@ -27,8 +27,8 @@ angular.module('Pesto.Home', ['ngRoute'])
         console.log('Copied ' + code + 'to clipboard');
     };
     $scope.onCategory = function(category) {
-        $location.url('/Home/' + category);
-    }
+        $location.url('/category/' + category);
+    };
     $http({
         method: 'GET',
         url: '/api/paste'
@@ -40,7 +40,7 @@ angular.module('Pesto.Home', ['ngRoute'])
 }).config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $routeProvider
   .when('/home', {
-      templateUrl: 'pages/home.html',
+      templateUrl: 'pages/collection.html',
       controller: 'Home'
   });
 }]);

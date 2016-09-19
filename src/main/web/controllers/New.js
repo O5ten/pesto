@@ -25,7 +25,7 @@ angular.module('Pesto.New', ['ngRoute'])
                 code: paste.code
             }
         }).then(function(response){
-            $location.url('/#/paste/' + response.data.id);
+            $location.url('/paste/' + response.data.id);
         });
     };
 }).config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {

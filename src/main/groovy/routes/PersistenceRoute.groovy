@@ -71,7 +71,7 @@ class PersistenceRoute {
     ArrayList<Paste> readByFilter(Request req, Response res){
         def field = req.params(':field')
         def value = req.params(':value')
-        def count = req.queryParams('limit') ?: 10
+        def count = req.queryParams('limit') ?: 100
         def after = req.queryParams('after') ?: 0
         ArrayList<Paste> pastes = db.fetchAllPastesByFilter(field, value, count as int, after as int)
         res.status 200
@@ -81,7 +81,7 @@ class PersistenceRoute {
     }
 
     ArrayList<Paste> readAll(Request req, Response res){
-        def count = req.queryParams('limit') ?: 10
+        def count = req.queryParams('limit') ?: 100
         def after = req.queryParams('after') ?: 0
         res.status 200
         res.type "application/json"

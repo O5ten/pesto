@@ -11,7 +11,7 @@ angular.module('Pesto.Category', ['ngRoute'])
             method: 'DELETE',
             url: '/api/paste/' + id
         }).then(function(response) {
-            $location.url('/#/Home');
+            $location.url('/home');
         });
     };
     $scope.goHome = function(){
@@ -36,8 +36,8 @@ angular.module('Pesto.Category', ['ngRoute'])
     });
 }).config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $routeProvider
-  .when('/home/:category', {
-      templateUrl: 'pages/home.html',
+  .when('/category/:category', {
+      templateUrl: 'pages/collection.html',
       controller: 'Category'
   });
 }]);
