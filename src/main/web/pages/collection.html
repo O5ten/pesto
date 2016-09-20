@@ -1,8 +1,14 @@
 <div class="page">
     <div ng-repeat="paste in pastes">
+        <i class="paste-top-right-dates paste-published">Published {{paste.published}}</i>
+        <div class="paste-top-right-dates" ng-if="paste.published !== paste.modified">
+            <i class="paste-modified">Last Modified {{paste.modified}}</i>
+        </div>
         <div class="header" ng-click="editPaste(paste.id)" ng-model="paste.title">{{paste.title}}</div>
         <div class="paste">
-            <i class="paste-top-right-links glyphicon glyphicon-trash" ng-click="onRemove(paste.id)"></i>
+            <i class="paste-top-right-links glyphicon glyphicon-chevron-up" ng-click="upvote(paste)"></i>
+            <i class="paste-top-right-links">{{paste.votes}}</i>
+            <i class="paste-top-right-links glyphicon glyphicon-chevron-down" ng-click="downvote(paste)"></i>
             <i class="paste-top-right-links glyphicon glyphicon-copy" ng-click="onCopy(paste.code)"></i>
             <i class="paste-top-right-links" ng-click="onCategory(paste.language)" ng-model="paste.language">{{paste.language}}</i>
             <div class="paste-content microlight"><p ng-model="paste.code">{{paste.code}}</p></div>

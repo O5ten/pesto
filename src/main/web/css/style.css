@@ -98,10 +98,16 @@ input {
     cursor: pointer;
 }
 
+.paste-top-right-dates {
+    float: right;
+    opacity: 0.5;
+    margin: 5px 10px 0px 10px;
+}
+
 .paste-top-right-links:hover {
-    -ms-transform: scale(1.5, 1.5); /* IE 9 */
-    -webkit-transform: scale(1.5, 1.5); /* Safari */
-    -transform: scale(1.5, 1.5);
+    -ms-transform: scale(1.2, 1.2); /* IE 9 */
+    -webkit-transform: scale(1.2, 1.2); /* Safari */
+    -transform: scale(1.2, 1.2);
 }
 
 .paste-top-right-links:active {

@@ -29,6 +29,12 @@ angular.module('Pesto.Home', ['ngRoute'])
     $scope.onCategory = function(category) {
         $location.url('/category/' + category);
     };
+    $scope.upvote = function(paste){
+        paste.votes++;
+    };
+    $scope.downvote = function(paste){
+        paste.votes--;
+    };
     $http({
         method: 'GET',
         url: '/api/paste'

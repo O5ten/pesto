@@ -17,7 +17,7 @@ class MongoWrapper {
     String database
     Gson gson
 
-    MongoWrapper(){
+    MongoWrapper() {
         this.username = this.username ?: 'mongodb'
         this.password = this.password ?: 'mongodb'
         this.database = this.database ?: 'pesto'
@@ -27,40 +27,61 @@ class MongoWrapper {
         this.pesto = client.getDB('pesto');
     }
 
-    Paste fetchPasteById(String id){
-        def v = this.pesto.pastes.find(id: id).find()
-        if(v){
-            new Paste(id: v.id, language: v.language, code: v.code, title: v.title, author: (v.author ?: 'Anonymous'))
+    Paste fetchPasteById(String id) {
+        def e = this.pesto.pastes.find(id: id).find()
+        if (e) {
+            entryAsPaste e
         }
     }
 
-    ArrayList<Paste> fetchAllPastes(int count = 10, int after = 0){
-        return this.pesto.pastes.find().limit(count).skip(after).collect({ v ->
-            new Paste(id: v.id, language: v.language, code: v.code, title: v.title);
+    ArrayList<Paste> fetchAllPastes(int count = 10, int after = 0) {
+        return this.pesto.pastes.find().limit(count).skip(after).collect({ e ->
+            entryAsPaste e
         })
     }
 
-    ArrayList<Paste> fetchAllPastesByFilter(field, value, int count = 10, int after = 0){
+    ArrayList<Paste> fetchAllPastesByFilter(field, value, int count = 10, int after = 0) {
         def criteria = [:]
         criteria.put(field, value)
-        this.pesto.pastes.find(criteria).limit(count).skip(after).collect({ v ->
-            new Paste(id: v.id, language: v.language, code: v.code, title: v.title);
+        this.pesto.pastes.find(criteria).limit(count).skip(after).collect({ e ->
+            entryAsPaste e
         })
     }
 
-    Id persistPaste(Paste paste){
+    static Paste entryAsPaste(e) {
+        return [id       : e.id,
+                language : e.language ?: 'Uncategorized',
+                code     : e.code ?: '',
+                title    : e.title ?: '',
+                published: e.published ?: getNow(),
+                modified : e.modified ?: getNow(),
+                votes    : e.votes ?: 0] as Paste
+    }
+
+    Id persistPaste(Paste paste) {
         paste.id = paste.id ?: UUID.randomUUID()
+        paste.published = getNow();
+        paste.modified = paste.published;
         println "POST: persisting object " + paste.asMap()
         this.pesto.pastes.insert(paste.asMap());
         return new Id(id: paste.id);
     }
 
-    String updatePasteById(String id, Paste paste){
+    static final String getNow(){
+        return new Date().format(asISO8601())
+    }
+
+    static final String asISO8601(){
+        return 'YYYY-MM-dd HH:mm:ss'
+    }
+
+    String updatePasteById(String id, Paste paste) {
         println "PUT: updating object:" + paste.asMap()
+        paste.modified = getNow();
         return this.pesto.pastes.update([id: id], paste.asMap())
     }
 
-    String deletePasteById(String id){
+    String deletePasteById(String id) {
         println "DELETE: removing object with id $id"
         return this.pesto.pastes.remove(id: id)
     }

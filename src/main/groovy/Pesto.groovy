@@ -1,4 +1,4 @@
-import routes.PersistenceRoute
+import routes.PasteRoute
 
 import static spark.Spark.*
 
@@ -11,4 +11,4 @@ port serverPort
 println "Serving static files from $serverHome at http://localhost:$serverPort"
 externalStaticFileLocation serverHome
 
-def persistenceRoute = new PersistenceRoute().enable()
+def persistenceRoute = new PasteRoute().enable()

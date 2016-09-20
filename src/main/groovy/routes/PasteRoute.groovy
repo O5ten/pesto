@@ -7,19 +7,16 @@ import json.EmptyTransformer
 import persistence.MongoWrapper
 import response.Id
 import response.Paste
-import spark.QueryParamsMap
 import spark.Request
 import spark.Response
 
-import javax.xml.ws.http.HTTPException
-
 import static spark.Spark.*;
 
-class PersistenceRoute {
+class PasteRoute {
     private MongoWrapper db
     private Gson gson
 
-    PersistenceRoute(){
+    PasteRoute(){
         this.db = new MongoWrapper()
         this.gson = new Gson()
     }
@@ -102,7 +99,7 @@ class PersistenceRoute {
         res.type "application/json"
     }
 
-    PersistenceRoute enable(){
+    PasteRoute enable(){
         this.enableCrud();
         return this;
     }
