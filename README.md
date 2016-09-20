@@ -17,8 +17,18 @@ gradle serve
 - Update pastes
 - Categorize pastes
 
+## Roadmap
+- Make voting-system update entry
+- Make voting only possible once per entry and origin
+- Make latest view
+- Make top-voted pastes view
+- Make MongoDB credentials.cfg instead of hardcoded
+- Make paste view microlight div contenteditable and
+  custom angular directive to pick up keyups as an ng-change similar 
+
 ## Requires
 An accessable MongoDB instance with usr/pw mongodb/mongodb
+
 
 ## Powered by 
 - MongoDB 2.4.9
