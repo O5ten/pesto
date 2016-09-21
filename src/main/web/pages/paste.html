@@ -1,10 +1,19 @@
 <div class="page">
     <div ng-repeat="paste in pastes">
-        <H3 ng-model="paste.title">{{paste.title}}</i></H3>
         <div class="view-column">
+            <i class="paste-top-right-dates paste-published">Published {{paste.published}}</i>
+            <div class="paste-top-right-dates" ng-if="paste.published !== paste.modified">
+                <i class="paste-modified">Last Modified {{paste.modified}}</i>
+            </div>
+            <H3 ng-model="paste.title">{{paste.title}}</i></H3>
             <div class="paste">
-                <i class="paste-top-right-links">{{paste.language}}</i>
-                <div class="paste-content microlight">{{paste.code}}</div>
+                <i class="paste-top-right-links glyphicon glyphicon-trash" ng-click="onRemove(paste.id)"></i>
+                <i class="paste-top-right-links glyphicon glyphicon-chevron-up" ng-click="upvote(paste)"></i>
+                <i class="paste-top-right-links">{{paste.votes}}</i>
+                <i class="paste-top-right-links glyphicon glyphicon-chevron-down" ng-click="downvote(paste)"></i>
+                <i class="paste-top-right-links glyphicon glyphicon-copy" ng-click="onCopy(paste.code)"></i>
+                <i class="paste-top-right-links" ng-model="paste.language">{{paste.language}}</i>
+                <div class="paste-content microlight"><p ng-model="paste.code">{{paste.code}}</p></div>
                 <i class="paste-author">{{paste.author}}</i>
             </div>
         </div>

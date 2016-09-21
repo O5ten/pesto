@@ -31,9 +31,37 @@ angular.module('Pesto.Paste', ['ngRoute'])
                     title: paste.title,
                     language: paste.language,
                     code: paste.code,
-                    id: paste.id
+                    id: paste.id,
+                    author: paste.author
                 }
             });
+        };
+        $scope.onCopy = function(code){
+            console.log('Copied ' + code + 'to clipboard');
+        };
+        var mayVote = true;
+        var toggleVoting = function(){
+            mayVote = !mayVote;
+        };
+        var vote = function(vote){
+            $http({
+                method: 'PUT',
+                url: '/api/paste/' + $routeParams.id + '/' + vote
+            });
+        };
+        $scope.upvote = function(paste){
+            if(mayVote){
+                paste.votes++;
+                toggleVoting();
+                vote('upvote');
+            }
+        };
+        $scope.downvote = function(paste){
+            if(mayVote){
+                paste.votes--;
+                toggleVoting();
+                vote('downvote');
+            }
         };
     }, function(response) {
         $scope.singlePaste = {

@@ -31,7 +31,7 @@ angular.module('Pesto.New', ['ngRoute'])
 }).config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
   $routeProvider
   .when('/paste/new', {
-      templateUrl: 'pages/paste.html',
+      templateUrl: 'pages/new.html',
       controller: 'New'
   });
 }]);

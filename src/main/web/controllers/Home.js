@@ -29,17 +29,39 @@ angular.module('Pesto.Home', ['ngRoute'])
     $scope.onCategory = function(category) {
         $location.url('/category/' + category);
     };
+    var vote = function(vote, id){
+        $http({
+            method: 'PUT',
+            url: '/api/paste/' + id + '/' + vote
+        });
+    };
     $scope.upvote = function(paste){
-        paste.votes++;
+        if(!paste.hasVoted){
+            paste.votes++;
+            paste.hasVoted = true;
+            vote('upvote', paste.id);
+        }
     };
     $scope.downvote = function(paste){
-        paste.votes--;
+        if(!paste.hasVoted){
+            paste.votes--;
+            paste.hasVoted = true;
+            vote('downvote', paste.id);
+        }
     };
     $http({
         method: 'GET',
         url: '/api/paste'
     }).then(function(response) {
-        $scope.pastes = response.data;
+        $scope.pastes = response.data.sort(function(a,b){
+            if(a.votes < b.votes){
+                return -1;
+            }
+            if(a.votes > b.votes){
+                return 1;
+            }
+            return 0;
+        }).reverse();
     }, function(response) {
         $scope.pastes = [];
     });

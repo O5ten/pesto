@@ -6,6 +6,7 @@
         </div>
         <div class="header" ng-click="editPaste(paste.id)" ng-model="paste.title">{{paste.title}}</div>
         <div class="paste">
+            <i class="paste-top-right-links glyphicon glyphicon-trash" ng-click="onRemove(paste.id)"></i>
             <i class="paste-top-right-links glyphicon glyphicon-chevron-up" ng-click="upvote(paste)"></i>
             <i class="paste-top-right-links">{{paste.votes}}</i>
             <i class="paste-top-right-links glyphicon glyphicon-chevron-down" ng-click="downvote(paste)"></i>

@@ -28,6 +28,8 @@ class PasteRoute {
         get '/api/paste/:id', this.&read, new JsonTransformer()
         post '/api/paste', this.&create, new JsonTransformer()
         put '/api/paste/:id', this.&update, new EmptyTransformer()
+        put '/api/paste/:id/upvote', this.&upvote, new EmptyTransformer()
+        put '/api/paste/:id/downvote', this.&downvote, new EmptyTransformer()
         delete '/api/paste/:id', this.&delete, new EmptyTransformer()
     }
 
@@ -88,6 +90,22 @@ class PasteRoute {
 
     Id update(Request req, Response res){
         Paste paste = gson.fromJson(req.body(), Paste.class)
+        db.updatePasteById req.params(':id'), paste
+        res.status 200
+        res.type "application/json"
+    }
+
+    Id upvote(Request req, Response res){
+        Paste paste = this.read req, res
+        paste.votes = paste.votes + 1
+        db.updatePasteById req.params(':id'), paste
+        res.status 200
+        res.type "application/json"
+    }
+
+    Id downvote(Request req, Response res){
+        Paste paste = this.read req, res
+        paste.votes = paste.votes - 1
         db.updatePasteById req.params(':id'), paste
         res.status 200
         res.type "application/json"

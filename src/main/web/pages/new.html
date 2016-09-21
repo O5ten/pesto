@@ -1,0 +1,23 @@
+<div class="view-column">
+    <H3 ng-model="paste.title">{{paste.title}}</i></H3>
+    <div class="paste">
+        <i class="paste-top-right-links" ng-click="onCategory(paste.language)" ng-model="paste.language">{{paste.language}}</i>
+        <div class="paste-content microlight" ng-change="resetMicrolight()"><p ng-model="paste.code">{{paste.code}}</p></div>
+        <i class="paste-author">{{paste.author}}</i>
+    </div>
+</div>
+<div class="edit-column">
+    <form ng-submit="onSubmit()">
+        <p>Title</p>
+        <textarea rows="1" ng-model="paste.title"></textarea>
+        <p>Category</p>
+        <textarea rows="1" ng-model="paste.language"></textarea>
+        <p>Author</p>
+        <textarea rows="1" ng-model="paste.author"></textarea>
+        <p>Code</p>
+        <textarea rows="6" cols="50" ng-change="resetMicrolight()" ng-model="paste.code" class="paste-edit microlight"></textarea>
+        <p>
+            <input type="submit" value="Save"/>
+        </p>
+    </form>
+</div>
